@@ -24,7 +24,7 @@ namespace ChessTables
             board.board2ascii().Print();
 
             Moves moves = new Moves(board);
-            foreach (FigureMove move in moves.NextBlackFigureMove())
+            foreach (FigureMove move in moves.NextWhiteFigureMove())
                 Console.WriteLine(move.Print());
         }
     }

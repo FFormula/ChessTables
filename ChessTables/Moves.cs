@@ -43,26 +43,25 @@ namespace ChessTables
                     
                 case FigureType.wRook:
                 case FigureType.bRook:
-                    foreach (FigureMove move in NextRookMove(figureCoord))
+                    foreach (FigureMove move in new MovesQueen(board).NextRookMove(figureCoord))
                         yield return move;
                     break;
                     
                 case FigureType.wBishop:
                 case FigureType.bBishop:
-                    foreach (FigureMove move in NextBishopMove(figureCoord))
+                    foreach (FigureMove move in new MovesQueen(board).NextBishopMove(figureCoord))
                         yield return move;
                     break;
 
                 case FigureType.wQueen:
                 case FigureType.bQueen:
-                    foreach (FigureMove move in NextQueenMove(figureCoord))
+                    foreach (FigureMove move in new MovesQueen(board).NextQueenMove(figureCoord))
                         yield return move;
                     break;
 
                 case FigureType.wPawn:
                 case FigureType.bPawn:
-                    MovesPawn pawn = new MovesPawn(board);
-                    foreach (FigureMove move in pawn.NextPawnMove(figureCoord))
+                    foreach (FigureMove move in new MovesPawn(board).NextPawnMove(figureCoord))
                         yield return move;
                     break;
 

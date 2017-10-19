@@ -47,13 +47,11 @@
     <Compile Include="Figure.cs" />
     <Compile Include="FigureCoord.cs" />
     <Compile Include="FigureMove.cs" />
-    <Compile Include="MovesBishop.cs" />
     <Compile Include="MovesKing.cs" />
     <Compile Include="Moves.cs" />
     <Compile Include="MovesKnight.cs" />
     <Compile Include="MovesPawn.cs" />
     <Compile Include="MovesQueen.cs" />
-    <Compile Include="MovesRook.cs" />
     <Compile Include="Print.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

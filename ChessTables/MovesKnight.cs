@@ -6,11 +6,11 @@ namespace ChessTables
     {
         const int KnightStrategy = 2;
 
-        const ulong noA = 0xFeFeFeFeFeFeFeFe;
-        const ulong nAB = 0xFcFcFcFcFcFcFcFc;
-        const ulong noH = 0x7f7f7f7f7f7f7f7f;
-        const ulong nGH = 0x3f3f3f3f3f3f3f3f;
-        const ulong ALL = 0xFFFFFFFFFFFFFFFF;
+        public const ulong noA = 0xFeFeFeFeFeFeFeFe;
+        public const ulong nAB = 0xFcFcFcFcFcFcFcFc;
+        public const ulong noH = 0x7f7f7f7f7f7f7f7f;
+        public const ulong nGH = 0x3f3f3f3f3f3f3f3f;
+        public const ulong ALL = 0xFFFFFFFFFFFFFFFF;
 
         IEnumerable<FigureMove> NextKnightMove(FigureCoord figureCoord)
         {
