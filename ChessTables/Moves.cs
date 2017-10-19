@@ -65,12 +65,12 @@ namespace ChessTables
                 case FigureType.wPawn:
                     foreach (FigureMove move in NextWhitePawnMove(figureCoord))
                         yield return move;
-                    break;
+                    break;/*
 
                 case FigureType.bPawn:
                     foreach (FigureMove move in NextBlackPawnMove(figureCoord))
                         yield return move;
-                    break;
+                    break;*/
 
             }
         }

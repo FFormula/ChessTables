@@ -104,7 +104,8 @@ namespace ChessTables
         public string Print()
         {
             return figure.figure + " " + figure.coord.Print() +
-                   (figure.coord == to ? "" : "-" + to.Print());
+                   (figure.coord == to ? "" : "-" + to.Print()) + 
+                   (is_promotion ? " " + promotion : "");
         }
     }
 }
