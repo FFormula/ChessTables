@@ -56,7 +56,7 @@ namespace ChessTables
         IEnumerable<FigureMove> NextKingMove_BitMask()
         {
             ulong kingMoves = AllKingMoves();
-            kingMoves.ULong2Ascii().Print();
+            //kingMoves.ULong2Ascii().Print();
             foreach (Coord to in Bitboard.NextCoord(kingMoves))
                yield return new FigureMove(figureCoord, to);
         }

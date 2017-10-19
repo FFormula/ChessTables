@@ -124,5 +124,17 @@ namespace ChessTables
                     return figures[j];
             return '.';
         }
+
+        public void MakeMove (FigureMove move)
+        {
+            ulong to = move.to.GetBit();
+            bits[(int)move.figure.figure] &= ~move.figure.coord.GetBit();
+            for (int j = 0; j < 12; j++)
+                bits[j] &= ~to;
+            if (move.is_promotion)
+                bits[(int)move.promotion] |= to;
+            else
+                bits[(int)move.figure.figure] |= to;
+        }
     }
 }

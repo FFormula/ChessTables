@@ -70,7 +70,6 @@ namespace ChessTables
                     foreach (FigureMove move in new MovesPawn(board).NextPawnMove(figureCoord))
                         yield return move;
                     break;
-
             }
         }
 

@@ -5,12 +5,14 @@ namespace ChessTables
     class MovesPawn
     {
         // white/black params
-        int y1 = 1;
-        int y2 = 2;
-        int y3 = 3;
-        int up = +1;
-        int yPromo;
-        ColorType fightColor = ColorType.black;
+        int y1; // = 1;
+        int y2; // = 2;
+        int y3; // = 3;
+        int up; // = +1;
+        int promoY;
+        FigureType promoFr;
+        FigureType promoTo;
+        ColorType fightColor;
 
         ulong bit;
         int x, y;
@@ -28,8 +30,10 @@ namespace ChessTables
             y1 = 1;
             y2 = 2;
             y3 = 3;
-            yPromo = 6;
             up = +1;
+            promoY = 6;
+            promoFr = FigureType.wKnight;
+            promoTo = FigureType.wQueen;
             fightColor = ColorType.black;
         }
 
@@ -38,8 +42,10 @@ namespace ChessTables
             y1 = 6;
             y2 = 5;
             y3 = 4;
-            yPromo = 1;
             up = -1;
+            promoY = 1;
+            promoFr = FigureType.bKnight;
+            promoTo = FigureType.bQueen;
             fightColor = ColorType.white;
         }
 
@@ -110,10 +116,10 @@ namespace ChessTables
 
         IEnumerable<FigureMove> NextPawnMove_Promotion (FigureMove move)
         {
-            if (y == yPromo)
+            if (y == promoY)
             {
                 move.is_promotion = true;
-                for (FigureType promo = FigureType.wKnight; promo <= FigureType.wQueen; promo++)
+                for (FigureType promo = promoFr; promo <= promoTo; promo++)
                 {
                     move.promotion = promo;
                     yield return move;
