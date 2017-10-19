@@ -60,14 +60,11 @@ namespace ChessTables
                     break;
 
                 case FigureType.wPawn:
-                    foreach (FigureMove move in NextWhitePawnMove(figureCoord))
+                case FigureType.bPawn:
+                    MovesPawn pawn = new MovesPawn(board);
+                    foreach (FigureMove move in pawn.NextPawnMove(figureCoord))
                         yield return move;
                     break;
-                    /*
-                case FigureType.bPawn:
-                    foreach (FigureMove move in NextBlackPawnMove(figureCoord))
-                        yield return move;
-                    break;*/
 
             }
         }
