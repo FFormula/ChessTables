@@ -2,22 +2,34 @@
 
 namespace ChessTables
 {
-    partial class Moves
+    class MovesKing
     {
         const int KingStrategy = 2;
 
-        IEnumerable<FigureMove> NextKingMove(FigureCoord figureCoord)
+        Bitboard board;
+        FigureCoord figureCoord;
+
+        static ulong[] kingMovesArray = null;
+
+        public MovesKing (Bitboard board)
         {
+            this.board = board;
+        }
+
+        public IEnumerable<FigureMove> NextKingMove(FigureCoord figureCoord)
+        {
+            this.figureCoord = figureCoord;
+
             switch (KingStrategy)
             {
-                case 1 : return NextKingMove_Steps(figureCoord);
-                case 2 : return NextKingMove_BitMask(figureCoord);
+                case 1 : return NextKingMove_Steps();
+                case 2 : return NextKingMove_BitMask();
                 case 3 :
-                default: return NextKingMove_Array64(figureCoord);
+                default: return NextKingMove_Array64();
             }
         }
 
-        IEnumerable<FigureMove> NextKingMove_Steps(FigureCoord figureCoord)
+        IEnumerable<FigureMove> NextKingMove_Steps()
         {
             FigureMove figureMove = new FigureMove(figureCoord);
             ColorType otherColor = figureCoord.figure.GetColor().Swap();
@@ -41,17 +53,15 @@ namespace ChessTables
             }
         }
 
-        IEnumerable<FigureMove> NextKingMove_BitMask(FigureCoord figureCoord)
+        IEnumerable<FigureMove> NextKingMove_BitMask()
         {
-            ulong kingMoves = AllKingMoves(figureCoord);
+            ulong kingMoves = AllKingMoves();
             kingMoves.ulong2ascii().Print();
             foreach (Coord to in Bitboard.NextCoord(kingMoves))
                yield return new FigureMove(figureCoord, to);
         }
 
-        static ulong[] kingMovesArray = null;
-
-        IEnumerable<FigureMove> NextKingMove_Array64(FigureCoord figureCoord)
+        IEnumerable<FigureMove> NextKingMove_Array64()
         {
             if (kingMovesArray == null)
             {
@@ -65,7 +75,7 @@ namespace ChessTables
                 yield return new FigureMove(figureCoord, to);
         }
 
-        ulong AllKingMoves(FigureCoord figureCoord)
+        ulong AllKingMoves()
         {
             ulong king = figureCoord.coord.GetBit();
             ColorType color = figureCoord.figure.GetColor();
@@ -74,9 +84,9 @@ namespace ChessTables
 
         ulong AllKingSquares(ulong king)
         {
-            return noA & (king << 9 | king << 1 | king >> 7) |
-                         (king << 8 | king >> 8) |
-                   noH & (king << 7 | king >> 1 | king >> 9);
+            return Moves.noA & (king << 9 | king << 1 | king >> 7) |
+                               (king << 8 | king >> 8) |
+                   Moves.noH & (king << 7 | king >> 1 | king >> 9);
         }
 
     }

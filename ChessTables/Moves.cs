@@ -6,6 +6,12 @@ namespace ChessTables
     {
         Bitboard board;
 
+        public const ulong noA = 0xFeFeFeFeFeFeFeFe;
+        public const ulong nAB = 0xFcFcFcFcFcFcFcFc;
+        public const ulong noH = 0x7f7f7f7f7f7f7f7f;
+        public const ulong nGH = 0x3f3f3f3f3f3f3f3f;
+        public const ulong ALL = 0xFFFFFFFFFFFFFFFF;
+
         public Moves(Bitboard board)
         {
             this.board = board;
@@ -31,13 +37,13 @@ namespace ChessTables
             {
                 case FigureType.wKing:
                 case FigureType.bKing:
-                    foreach (FigureMove move in NextKingMove(figureCoord))
+                    foreach (FigureMove move in new MovesKing(board).NextKingMove(figureCoord))
                         yield return move;
                     break;
 
                 case FigureType.wKnight:
                 case FigureType.bKnight:
-                    foreach (FigureMove move in NextKnightMove(figureCoord))
+                    foreach (FigureMove move in new MovesKnight(board).NextKnightMove(figureCoord))
                         yield return move;
                     break;
                     

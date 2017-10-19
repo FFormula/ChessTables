@@ -2,28 +2,33 @@
 
 namespace ChessTables
 {
-    partial class Moves
+    class MovesKnight
     {
         const int KnightStrategy = 2;
 
-        public const ulong noA = 0xFeFeFeFeFeFeFeFe;
-        public const ulong nAB = 0xFcFcFcFcFcFcFcFc;
-        public const ulong noH = 0x7f7f7f7f7f7f7f7f;
-        public const ulong nGH = 0x3f3f3f3f3f3f3f3f;
-        public const ulong ALL = 0xFFFFFFFFFFFFFFFF;
+        Bitboard board;
+        FigureCoord figureCoord;
 
-        IEnumerable<FigureMove> NextKnightMove(FigureCoord figureCoord)
+        static ulong[] knightMovesArray = null;
+
+        public MovesKnight(Bitboard board)
         {
+            this.board = board;
+        }
+
+        public IEnumerable<FigureMove> NextKnightMove(FigureCoord figureCoord)
+        {
+            this.figureCoord = figureCoord;
             switch (KnightStrategy)
             {
-                case 1: return NextKnightMove_Steps(figureCoord);
-                case 2: return NextKnightMove_BitMask(figureCoord);
+                case 1: return NextKnightMove_Steps();
+                case 2: return NextKnightMove_BitMask();
                 case 3:
-                default: return NextKnightMove_Array64(figureCoord);
+                default: return NextKnightMove_Array64();
             }
         }
 
-        IEnumerable<FigureMove> NextKnightMove_Steps(FigureCoord figureCoord)
+        IEnumerable<FigureMove> NextKnightMove_Steps()
         {
             ColorType other = figureCoord.figure.GetColor().Swap();
             int[,] KnightSteps =
@@ -37,8 +42,8 @@ namespace ChessTables
             for (int j = 0; j < 8; j++)
             {
                 if (figureCoord.coord.Shift(KnightSteps[j, 0],
-                                       KnightSteps[j, 1],
-                                   out figureMove.to))
+                                            KnightSteps[j, 1],
+                                        out figureMove.to))
                 {
                     if (board.IsEmpty(figureMove.to))
                         yield return figureMove;
@@ -48,17 +53,15 @@ namespace ChessTables
             }
         }
 
-        IEnumerable<FigureMove> NextKnightMove_BitMask(FigureCoord figureCoord)
+        IEnumerable<FigureMove> NextKnightMove_BitMask()
         {
-            ulong knightMoves = AllKnightMoves(figureCoord);
-            knightMoves.ulong2ascii().Print();
+            ulong knightMoves = AllKnightMoves();
+            //knightMoves.ulong2ascii().Print();
             foreach (Coord to in Bitboard.NextCoord(knightMoves))
                 yield return new FigureMove(figureCoord, to);
         }
 
-        static ulong[] knightMovesArray = null;
-
-        IEnumerable<FigureMove> NextKnightMove_Array64(FigureCoord figureCoord)
+        IEnumerable<FigureMove> NextKnightMove_Array64()
         {
             if (knightMovesArray == null)
             {
@@ -73,7 +76,7 @@ namespace ChessTables
 
         }
 
-        ulong AllKnightMoves(FigureCoord figureCoord)
+        ulong AllKnightMoves()
         {
             ulong knight = figureCoord.coord.GetBit();
             ColorType color = figureCoord.figure.GetColor();
@@ -82,10 +85,10 @@ namespace ChessTables
 
         ulong AllKnightSquares(ulong knight)
         {
-            return nAB & (knight << 10 | knight >>  6) |
-                   noA & (knight << 17 | knight >> 15) |
-                   noH & (knight << 15 | knight >> 17) |
-                   nGH & (knight <<  6 | knight >> 10);
+            return Moves.nAB & (knight << 10 | knight >>  6) |
+                   Moves.noA & (knight << 17 | knight >> 15) |
+                   Moves.noH & (knight << 15 | knight >> 17) |
+                   Moves.nGH & (knight <<  6 | knight >> 10);
         }
 
     }
