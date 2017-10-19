@@ -27,13 +27,6 @@
             xy = n;
         }
 
-        public string Print()
-        {
-            extract(out int x, out int y);
-            return ((char)('a' + x)).ToString() +
-                   ((char)('1' + y)).ToString();
-        }
-
         public void extract(out int x, out int y)
         {
             x = xy & 7;

@@ -21,7 +21,7 @@ namespace ChessTables
             Console.ForegroundColor = oldForeColor;
         }
 
-        public static string board2ascii (this Bitboard board)
+        public static string Board2Ascii (this Bitboard board)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("  +-----------------+");
@@ -38,7 +38,7 @@ namespace ChessTables
             return sb.ToString();
         }
 
-        public static string ulong2ascii(this ulong bits)
+        public static string ULong2Ascii(this ulong bits)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("  +-----------------+");
@@ -56,8 +56,7 @@ namespace ChessTables
             return sb.ToString();
         }
 
-
-        public static string fen2ascii (this string fen)
+        public static string Fen2Ascii (this string fen)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("  +-----------------+");
@@ -92,6 +91,20 @@ namespace ChessTables
                 return ColorType.white;
             else
                 return ColorType.black;
+        }
+
+        public static string Print(this Coord coord)
+        {
+            coord.extract(out int x, out int y);
+            return ((char)('a' + x)).ToString() +
+                   ((char)('1' + y)).ToString();
+        }
+        
+        public static string Print(this FigureMove move)
+        {
+            return move.figure.figure + " " + move.figure.coord.Print() +
+                   (move.figure.coord == move.to ? "" : "-" + move.to.Print()) +
+                   (move.is_promotion ? " " + move.promotion : "");
         }
     }
 }

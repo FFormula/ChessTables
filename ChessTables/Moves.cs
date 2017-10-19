@@ -2,7 +2,7 @@
 
 namespace ChessTables
 {
-    partial class Moves
+    class Moves
     {
         Bitboard board;
 

@@ -1,6 +1,6 @@
 ﻿namespace ChessTables
 {
-    struct FigureMove
+    public struct FigureMove
     {
         public FigureCoord figure;
         public Coord to;
@@ -21,11 +21,5 @@
             is_castle = false; castle = figure;
         }
 
-        public string Print()
-        {
-            return figure.figure + " " + figure.coord.Print() +
-                   (figure.coord == to ? "" : "-" + to.Print()) +
-                   (is_promotion ? " " + promotion : "");
-        }
     }
 }

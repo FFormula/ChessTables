@@ -21,7 +21,7 @@ namespace ChessTables
             //fen = "8/6K1/8/8/1N1Q5/8/3B4/R7";
             fen = "k6b/p3pNP1/5P2/3n1R2/2ppPp1n/1b1P1p1p/PPP3P1/7K";
             Bitboard board = new Bitboard(fen);
-            board.board2ascii().Print();
+            board.Board2Ascii().Print();
 
             Moves moves = new Moves(board);
             foreach (FigureMove move in moves.NextWhiteFigureMove())
