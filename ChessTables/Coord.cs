@@ -45,8 +45,7 @@ namespace ChessTables
         public bool Shift(int sx, int sy, out Coord newCoord)
         {
             extract(out int x, out int y);
-            if (OnBoard(x + sx) && 
-                OnBoard(y + sy))
+            if (OnBoard(x + sx, y + sy))
             {
                 newCoord = new Coord(x + sx, y + sy);
                 return true;
@@ -55,9 +54,14 @@ namespace ChessTables
             return false;
         }
 
-        public static bool OnBoard(int x)
+        public static bool OnBoard(int p)
         {
-            return (x >= 0) && (x <= 7);
+            return (p >= 0) && (p <= 7);
+        }
+
+        public static bool OnBoard (int x, int y)
+        {
+            return OnBoard(x) && OnBoard(y);
         }
 
         public static bool operator ==(Coord a, Coord b)

@@ -21,11 +21,6 @@ namespace ChessTables
                 yield return new FigureMove(figureCoord, to);
         }
 
-        ulong Slide1(ulong coord, ulong stops) => Slide(coord, -9, noH, stops);
-        ulong Slide3(ulong coord, ulong stops) => Slide(coord, -7, noA, stops);
-        ulong Slide7(ulong coord, ulong stops) => Slide(coord, +7, noH, stops);
-        ulong Slide9(ulong coord, ulong stops) => Slide(coord, +9, noA, stops);
-
         ulong AllBishopMoves(FigureCoord figureCoord)
         {
             ulong bishop = figureCoord.coord.GetBit();

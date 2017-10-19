@@ -43,13 +43,13 @@ namespace ChessTables
                     foreach (FigureMove move in NextKnightMove(figureCoord))
                         yield return move;
                     break;
-
+                    */
                 case FigureType.wRook:
                 case FigureType.bRook:
                     foreach (FigureMove move in NextRookMove(figureCoord))
                         yield return move;
                     break;
-
+                    /*
                 case FigureType.wBishop:
                 case FigureType.bBishop:
                     foreach (FigureMove move in NextBishopMove(figureCoord))
