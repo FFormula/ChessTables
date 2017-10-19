@@ -45,6 +45,8 @@
     <Compile Include="Bitboard.cs" />
     <Compile Include="Coord.cs" />
     <Compile Include="Figure.cs" />
+    <Compile Include="FigureCoord.cs" />
+    <Compile Include="FigureMove.cs" />
     <Compile Include="MovesBishop.cs" />
     <Compile Include="MovesKing.cs" />
     <Compile Include="Moves.cs" />

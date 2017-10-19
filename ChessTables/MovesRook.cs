@@ -21,8 +21,6 @@ namespace ChessTables
             }
         }
 
-
-
         IEnumerable<FigureMove> NextRookMove_Steps (FigureCoord figureCoord)
         {
             ulong rookMoves = AllRookSteps(figureCoord);

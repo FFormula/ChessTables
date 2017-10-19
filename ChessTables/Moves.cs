@@ -17,8 +17,6 @@ namespace ChessTables
             foreach (FigureCoord figureCoord in board.NextWhiteFigureCoord)
                 foreach (FigureMove figureMove in NextFigureMove(figureCoord))
                     yield return figureMove;
-//                foreach (Coord to in Bitboard.NextCoord(AllKingMoves(figureCoord)))
-//                    yield return new FigureMove(figureCoord, to);
         }
 
         public IEnumerable<FigureMove> NextBlackFigureMove()
@@ -31,7 +29,7 @@ namespace ChessTables
         IEnumerable<FigureMove> NextFigureMove(FigureCoord figureCoord)
         {
             switch (figureCoord.figure)
-            {/*
+            {
                 case FigureType.wKing:
                 case FigureType.bKing:
                     foreach (FigureMove move in NextKingMove(figureCoord))
@@ -43,13 +41,13 @@ namespace ChessTables
                     foreach (FigureMove move in NextKnightMove(figureCoord))
                         yield return move;
                     break;
-                    */
+                    
                 case FigureType.wRook:
                 case FigureType.bRook:
                     foreach (FigureMove move in NextRookMove(figureCoord))
                         yield return move;
                     break;
-                    /*
+                    
                 case FigureType.wBishop:
                 case FigureType.bBishop:
                     foreach (FigureMove move in NextBishopMove(figureCoord))
@@ -61,12 +59,12 @@ namespace ChessTables
                     foreach (FigureMove move in NextQueenMove(figureCoord))
                         yield return move;
                     break;
-*/
+
                 case FigureType.wPawn:
                     foreach (FigureMove move in NextWhitePawnMove(figureCoord))
                         yield return move;
-                    break;/*
-
+                    break;
+                    /*
                 case FigureType.bPawn:
                     foreach (FigureMove move in NextBlackPawnMove(figureCoord))
                         yield return move;
