@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ChessTables
+﻿namespace ChessTables
 {
     public struct Coord
     {
